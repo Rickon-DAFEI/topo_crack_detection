@@ -62,11 +62,11 @@ torch.backends.cudnn.deterministic = True
 
 #Paths to images and their masks
 #train
-path2train_i="../data/training_set/c_images"
-path2train_m="../data/training_set/c_mask"
+path2train_i=data/training_set/c_images"
+path2train_m=data/training_set/c_mask"
 #validation
-path2valid_i="../data/validation_set/c_images"
-path2valid_m="../data/validation_set/c_mask"
+path2valid_i=data/validation_set/c_images"
+path2valid_m=data/validation_set/c_mask"
 
 ##DATA LOADER
 #Defining two objects of open_dataset class:
@@ -97,7 +97,7 @@ loss_func1 = nn.MSELoss()
 loss_func2 = MALISLoss_window_pos()
 
 ##Trainning Model
-path2models= "../models/"
+path2models= models/"
 params_train={
     "num_epochs": n_epoch,
     "optimizer": opt,

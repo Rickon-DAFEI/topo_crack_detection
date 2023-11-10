@@ -24,7 +24,7 @@ def crack_segmentation(images_path, out_return=False):
 
     model_path = '../models/mse+topo_full_weights_200_0.00018_0.01_0.001.pt' #mse+topo
     warnings.filterwarnings("ignore")
-    result_path="../results/"
+    result_path=results/"
 
     model = UNet16()
     device = torch.device('cuda')
