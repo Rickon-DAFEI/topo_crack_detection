@@ -22,9 +22,9 @@ import warnings
 
 def crack_segmentation(images_path, out_return=False):
 
-    model_path = '../models/mse+topo_full_weights_200_0.00018_0.01_0.001.pt' #mse+topo
+    model_path = 'models/mse+topo_full_weights_200_0.00018_0.01_0.001.pt' #mse+topo
     warnings.filterwarnings("ignore")
-    result_path=results/"
+    result_path="results/"
 
     model = UNet16()
     device = torch.device('cuda')
@@ -107,5 +107,5 @@ def crack_segmentation(images_path, out_return=False):
 
 #Testing
 data_folder = "your_folder/"
-images_path = '../data/' + data_folder 
+images_path = 'data/' + data_folder 
 crack_segmentation(images_path, out_return=False)

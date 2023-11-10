@@ -53,7 +53,7 @@ def sliding_window(image, stepSize, windowSize):
                 
 # Load images
 def main_sliding(data_set,type_data, save=True, desired_size = 256):
-    image_path = '../data/'+data_set+'/'+type_data
+    image_path = 'data/'+data_set+'/'+type_data
     imageNames = []
     image_files = []
     image_patches = {}
@@ -63,7 +63,7 @@ def main_sliding(data_set,type_data, save=True, desired_size = 256):
             image_files.append(skimage.io.imread(os.path.join(image_path, imageFile)))
             
     #  Chnage Grayscale sliced images to RGB and save them
-    sliced_images_path = '../data/'+data_set+'/'+type_data+'_patches'
+    sliced_images_path = 'data/'+data_set+'/'+type_data+'_patches'
 
     check_dir = os.path.isdir(sliced_images_path)
     if not check_dir:

@@ -40,9 +40,9 @@ def main_image_from_slices(full_image_path, patches_path, type_img = None, windo
     list_patches = os.listdir(patches_path)
 
     #Check if directory for full images exists, if not, create it
-    check_dir = os.path.isdir('../results/full/')
+    check_dir = os.path.isdir('results/full/')
     if not check_dir:
-        os.makedirs('../results/full/')
+        os.makedirs('results/full/')
 
     #images = {}
     for im in list_images:
@@ -94,4 +94,4 @@ def main_image_from_slices(full_image_path, patches_path, type_img = None, windo
         else:
             image_name_save = im_name + '.png'
         
-        skimage.io.imsave("../results/full/" + image_name_save, overlay_crack)
+        skimage.io.imsave("results/full/" + image_name_save, overlay_crack)

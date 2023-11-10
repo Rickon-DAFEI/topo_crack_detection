@@ -24,15 +24,15 @@ from sliding_window import main_sliding
 from image_from_slices import main_image_from_slices
 
 # model path for different experiments
-#model_path = '../models/mse/mse_full_weights_50_5e-06_1.0_0.1.pt' #mse
-#model_path = '../models/topo/topo_full_weights_50_3e-05_100.0_10.0_last.pt' #topo
-#model_path = '../models/dice+topo/dice+topo_full_weights_50_3e-05_100.0_10.0_last.pt' #dice+topo
-model_path = '../models/mse+topo/mse+topo_full_weights_50_3e-05_100.0_10.0.pt' #mse+topo
+#model_path = 'models/mse/mse_full_weights_50_5e-06_1.0_0.1.pt' #mse
+#model_path = 'models/topo/topo_full_weights_50_3e-05_100.0_10.0_last.pt' #topo
+#model_path = 'models/dice+topo/dice+topo_full_weights_50_3e-05_100.0_10.0_last.pt' #dice+topo
+model_path = 'models/mse+topo/mse+topo_full_weights_50_3e-05_100.0_10.0.pt' #mse+topo
 
 #Data paths
-path2test="../data/test_set/images_patches"
-full_image_path = "../data/test_set/images/"
-patches_path="../results/patches/"
+path2test="data/test_set/images_patches"
+full_image_path = "data/test_set/images/"
+patches_path="results/patches/"
 
 #Creating patches_images
 desired_size = 1024 #if overflow the memory, reduce the size
@@ -84,12 +84,14 @@ for ni, image in enumerate(test_dl):
     corner_rgb[:,:,2] = (1-corner)*255
     prediction_rgb[image_name] = corner_rgb
 
+print("prediction_bin",prediction_bin)
+
 #Getting original images
 list_images = os.listdir(images_path)
 images = {}
 for img in list_images:
     #print(images_path + img)
-    images[img[:-4]] = cv.imread(images_path + img)
+    images["images_patches\\"+img[:-4]] = cv.imread(images_path + img)
 
 
 #Resizing predictions to the original size
@@ -106,15 +108,15 @@ for key in images:
 
 #saving binary and overlayed predictions
 #Check if directory exists, if not, create it
-check_dir = os.path.isdir('../results/patches/')
+check_dir = os.path.isdir('results/patches/')
 if not check_dir:
-    os.makedirs('../results/patches/')
+    os.makedirs('results/patches/')
 
 for key in images:
-    cv.imwrite('../results/patches/' + key + '_pred_bin.png', prediction_bin_resized[key])
-    cv.imwrite('../results/patches/' + key + '.png', images[key])
-    cv.imwrite('../results/patches/' + key + '_overlayed.png', overlayed_prediction[key])
-    cv.imwrite('../results/patches/' + key + '_pred_dm.png', 5*prediction_dm[key])
+    cv.imwrite('results/patches/' + key + '_pred_bin.png', prediction_bin_resized[key])
+    cv.imwrite('results/patches/' + key + '.png', images[key])
+    cv.imwrite('results/patches/' + key + '_overlayed.png', overlayed_prediction[key])
+    cv.imwrite('results/patches/' + key + '_pred_dm.png', 5*prediction_dm[key])
 
 main_image_from_slices(full_image_path, patches_path, type_img = None, windowSize=(desired_size,desired_size))
 main_image_from_slices(full_image_path, patches_path, type_img = "pred_bin", windowSize=(desired_size,desired_size))
